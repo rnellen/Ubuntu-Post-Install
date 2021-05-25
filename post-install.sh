@@ -19,5 +19,19 @@ sudo apt-get update -y
 # Upgrade the system
 sudo apt-get upgrade -y
 
+# Install OpenSSH
+sudo apt-get install openssh-server -y
+
+# Backup SSH config files
+mv /etc/ssh/ssh_config /etc/ssh/ssh_config-orig
+mv /etc/ssh/sshd_config /etc/ssh/sshd_config-orig
+mv /etc/ssh/moduli /etc/ssh/moduli-orig
+
+# Create new SSH config files (disable root login, keybased login, hardening)
+echo -n "" > /etc/ssh/ssh_config
+
+
+echo -n "" > /etc/ssh/sshd_config
+
 
 exit 0
