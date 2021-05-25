@@ -50,7 +50,7 @@ echo "
 Please provide a new SSH port number
 ###########################################
 "
-read $sshport
+read sshport
 echo "Port $sshport" >> /etc/ssh/sshd_config
 echo "PermitRootLogin no" >> /etc/ssh/sshd_config
 echo "UsePAM yes" >> /etc/ssh/sshd_config
@@ -79,20 +79,20 @@ echo "MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-
 awk '$5 > 2000' /etc/ssh/moduli > "${HOME}/moduli"
 mv "${HOME}/moduli" /etc/ssh/moduli
 
-# Import public key from GitHub
-ssh-import-id-gh rnellen
-
 # Create new default user and add it to sudo and ssh-user 
 echo "
 ###########################################
 Please provide a new user
 ###########################################
 "
-read $user
+read user
 adduser $user
 usermod -a -G sudo $user
 groupadd ssh-user
 usermod -a -G ssh-user $user
+
+# Import public key from GitHub
+ssh-import-id -u $user gh:rnellen
 
 # Restart sshd
 systemctl restart sshd
