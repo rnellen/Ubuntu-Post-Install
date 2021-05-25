@@ -74,9 +74,10 @@ ssh-keygen -T /etc/ssh/moduli.safe -f /etc/ssh/moduli.all
 mv /etc/ssh/moduli.safe /etc/ssh/moduli
 rm /etc/ssh/moduli.all
 
+# Import public key from GitHub
+ssh-import-id-gh rnellen
 
-
-# create new default user and add it to sudo and ssh-user 
+# Create new default user and add it to sudo and ssh-user 
 echo "
 ###########################################
 Please provide a new user
@@ -87,6 +88,9 @@ adduser $user
 usermod -a -G sudo $user
 groupadd ssh-user
 usermod -a -G ssh-user $user
+
+# Restart sshd
+systemctl restart sshd
 
 
 
