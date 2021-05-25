@@ -25,7 +25,7 @@ apt-get install openssh-server -y
 # Backup SSH config files
 mv /etc/ssh/ssh_config /etc/ssh/ssh_config-orig
 mv /etc/ssh/sshd_config /etc/ssh/sshd_config-orig
-mv /etc/ssh/moduli /etc/ssh/moduli-orig
+#mv /etc/ssh/moduli /etc/ssh/moduli-orig
 
 # Create new SSH config files (disable root login, keybased login, hardening)
 echo -n "" > /etc/ssh/ssh_config
@@ -50,7 +50,6 @@ Please provide a new SSH port number
 read $sshport
 echo "Port $sshport" >> /etc/ssh/sshd_config
 echo "PermitRootLogin no" >> /etc/ssh/sshd_config
-echo "PermitEmptyPasswords no" /etc/ssh/sshd_config
 echo "UsePAM yes" >> /etc/ssh/sshd_config
 echo "X11Forwarding yes" >> /etc/ssh/sshd_config
 echo "PrintMotd no" >> /etc/ssh/sshd_config
@@ -69,10 +68,13 @@ echo "ChallengeResponsMACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@opens
 echo "Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr" >> /etc/ssh/sshd_config
 echo "MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com" >> /etc/ssh/sshd_config
 
-ssh-keygen -G /etc/ssh/moduli.all -b 4096
-ssh-keygen -T /etc/ssh/moduli.safe -f /etc/ssh/moduli.all
-mv /etc/ssh/moduli.safe /etc/ssh/moduli
-rm /etc/ssh/moduli.all
+#ssh-keygen -G /etc/ssh/moduli.all -b 4096
+#ssh-keygen -T /etc/ssh/moduli.safe -f /etc/ssh/moduli.all
+#mv /etc/ssh/moduli.safe /etc/ssh/moduli
+#rm /etc/ssh/moduli.all
+
+awk '$5 > 2000' /etc/ssh/moduli > "${HOME}/moduli"
+mv "${HOME}/moduli" /etc/ssh/moduli
 
 # Import public key from GitHub
 ssh-import-id-gh rnellen
