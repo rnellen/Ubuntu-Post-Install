@@ -86,7 +86,7 @@ groupadd ssh-user
 usermod -a -G ssh-user $user
 
 # Import public key from GitHub
-su - $user -c "ssh-import-id -o /home/$user/.ssh/authorized_keys gh:rnellen"
+su - $user -c "ssh-import-id gh:rnellen"
 
 # Restart sshd
 systemctl restart sshd
