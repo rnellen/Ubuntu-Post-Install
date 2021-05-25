@@ -26,7 +26,7 @@ Ubuntu 18.04 post install script
 - System Clean up after the install
 
 # How tu use it
-wget https://raw.githubusercontent.com/jwandrews99/Linux-Post-Install/master/post-install.sh && bash post-install.sh
+wget https://raw.githubusercontent.com/rnellen/Ubuntu-Bionic-Post-Install/main/post-install.sh && bash post-install.sh
 
 # How tu use speedtest
 In order to use speedtest just use "speedtest" as the command in the cli.[ Click for more info.](https://github.com/sivel/speedtest-cli)
