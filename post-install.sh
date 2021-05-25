@@ -50,6 +50,7 @@ Please provide a new SSH port number
 read $sshport
 echo "Port $sshport" >> /etc/ssh/sshd_config
 echo "PermitRootLogin no" >> /etc/ssh/sshd_config
+echo "PermitEmptyPasswords no" /etc/ssh/sshd_config
 echo "UsePAM yes" >> /etc/ssh/sshd_config
 echo "X11Forwarding yes" >> /etc/ssh/sshd_config
 echo "PrintMotd no" >> /etc/ssh/sshd_config
@@ -73,7 +74,6 @@ ssh-keygen -T /etc/ssh/moduli.safe -f /etc/ssh/moduli.all
 mv /etc/ssh/moduli.safe /etc/ssh/moduli
 rm /etc/ssh/moduli.all
 
-# Create the ssh-user group
 
 
 # create new default user and add it to sudo and ssh-user 
