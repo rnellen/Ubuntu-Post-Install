@@ -19,6 +19,9 @@ apt-get update -y
 # Upgrade the system
 apt-get upgrade -y
 
+# Install various tools
+apt-get install mc screen htop nano -y
+
 # Install OpenSSH
 apt-get install openssh-server -y
 
