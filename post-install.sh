@@ -57,18 +57,17 @@ echo "X11Forwarding yes" >> /etc/ssh/sshd_config
 echo "PrintMotd no" >> /etc/ssh/sshd_config
 echo "AcceptEnv LANG LC_*" >> /etc/ssh/sshd_config
 echo "Subsystem	sftp	/usr/lib/openssh/sftp-server" >> /etc/ssh/sshd_config
+echo "KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256" >> /etc/ssh/sshd_config
 echo "Protocol 2" >> /etc/ssh/sshd_config
-echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config
 echo "HostKey /etc/ssh/ssh_host_ed25519_key" >> /etc/ssh/sshd_config
 echo "HostKey /etc/ssh/ssh_host_rsa_key" >> /etc/ssh/sshd_config
 echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
+echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config
 echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
 echo "AllowGroups ssh-user" >> /etc/ssh/sshd_config
-echo "AuthorizedKeysFile     %h/.ssh/authorized_keys" >> /etc/ssh/sshd_config
-echo "KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256" >> /etc/ssh/sshd_config
-echo "ChallengeResponsMACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.comeAuthentication no" >> /etc/ssh/sshd_config
 echo "Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr" >> /etc/ssh/sshd_config
 echo "MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com" >> /etc/ssh/sshd_config
+echo "AuthorizedKeysFile     %h/.ssh/authorized_keys" >> /etc/ssh/sshd_config
 
 awk '$5 > 2000' /etc/ssh/moduli > "${HOME}/moduli"
 mv "${HOME}/moduli" /etc/ssh/moduli
