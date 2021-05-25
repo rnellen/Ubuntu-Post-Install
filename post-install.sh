@@ -28,7 +28,6 @@ apt-get install openssh-server -y
 # Backup SSH config files
 mv /etc/ssh/ssh_config /etc/ssh/ssh_config-orig
 mv /etc/ssh/sshd_config /etc/ssh/sshd_config-orig
-#mv /etc/ssh/moduli /etc/ssh/moduli-orig
 
 # Create new SSH config files (disable root login, keybased login, hardening)
 echo -n "" > /etc/ssh/ssh_config
@@ -42,7 +41,7 @@ echo "    GSSAPIAuthentication yes" >> /etc/ssh/ssh_config
 echo "    HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa" >> /etc/ssh/ssh_config
 echo "    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256" >> /etc/ssh/ssh_config
 echo "    Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr" >> /etc/ssh/ssh_config
-echo "	   MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com" >> /etc/ssh/ssh_config
+echo "    MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com" >> /etc/ssh/ssh_config
 
 echo -n "" > /etc/ssh/sshd_config
 echo "
@@ -71,11 +70,6 @@ echo "ChallengeResponsMACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@opens
 echo "Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr" >> /etc/ssh/sshd_config
 echo "MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com" >> /etc/ssh/sshd_config
 
-#ssh-keygen -G /etc/ssh/moduli.all -b 4096
-#ssh-keygen -T /etc/ssh/moduli.safe -f /etc/ssh/moduli.all
-#mv /etc/ssh/moduli.safe /etc/ssh/moduli
-#rm /etc/ssh/moduli.all
-
 awk '$5 > 2000' /etc/ssh/moduli > "${HOME}/moduli"
 mv "${HOME}/moduli" /etc/ssh/moduli
 
@@ -92,7 +86,7 @@ groupadd ssh-user
 usermod -a -G ssh-user $user
 
 # Import public key from GitHub
-ssh-import-id -u $user gh:rnellen
+su - $user -c "ssh-import-id -o /home/$user/.ssh/authorized_keys gh:rnellen"
 
 # Restart sshd
 systemctl restart sshd
