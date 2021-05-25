@@ -20,7 +20,7 @@ apt-get update -y
 apt-get upgrade -y
 
 # Install various tools
-apt-get install mc screen htop nano -y
+apt-get install mc screen htop nano ssh-import-id -y
 
 # Install OpenSSH
 apt-get install openssh-server -y
