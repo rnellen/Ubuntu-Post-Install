@@ -103,16 +103,28 @@ ufw allow 80
 ufw allow 443
 ufw allow $sshport
 ufw enable
+systemctl enable ufw
+systemctl start ufw
 
 # Fail2Ban
 
 # Motd
+
+# Config and start timesyncd
+echo "
+NTP=0.pool.ntp.org 1.pool.ntp.org
+FallbackNTP=ntp.ubuntu.com
+" >> /etc/systemd/timesyncd.conf
+
+sudo systemctl restart systemd-timesyncd.service
 
 # SpeedTest Install
 
 # Docker option install 
 
 
-
+# Cleanup
+sudo apt autoremove
+sudo apt clean
 
 exit 0
