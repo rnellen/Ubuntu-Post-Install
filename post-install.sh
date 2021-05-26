@@ -93,7 +93,7 @@ su - $user -c "ssh-import-id gh:rnellen"
 systemctl restart sshd
 
 # Sudo without password
-echo '$user  ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+echo '%sudo ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 # Install and configure Firewall
 apt-get install ufw
