@@ -34,42 +34,7 @@ ForceCommand internal-sftp
 
 sudo service ssh restart  
 
-# Docker option install 
-echo "
-######################################################################################################
-Do you want to install docker? If so type y / If you dont want to install enter n
-######################################################################################################
-"
-read $docker
 
-if [[ $docker -eq "y" ]] || [[ $docker -eq "yes" ]]; then
-    sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-    sudo apt-get update -y
-    apt-cache policy docker-ce
-    sudo apt install docker-ce -y
-    sudo apt-get install docker-compose -y 
-
-    echo " 
-    
-        Installing Portainer on port 9000
-    "
-
-    sudo docker volume create portainer_data
-    sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
-
-    echo "
-#####################################################################################################    
-                            Congrats Docker has been installed
-######################################################################################################
-"
-    docker -v
-
-else 
-    echo "Docker was not installed"
- 
-fi
 
 # Wireguard install
 echo "
