@@ -96,10 +96,10 @@ su - $user -c "ssh-import-id gh:rnellen"
 # Restart sshd
 systemctl restart sshd
 
-
 # Sudo without password
+echo '$user  ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
-# Firewall
+# Install and configure Firewall
 
 # Fail2Ban
 
