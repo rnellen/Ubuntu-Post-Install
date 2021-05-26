@@ -150,7 +150,7 @@ if [[ $docker -eq "y" ]] || [[ $docker -eq "yes" ]]; then
     apt-cache policy docker-ce
     apt install docker-ce -y
     apt install docker-compose -y 
-
+    usermod -a -G docker $user
     echo "
 #####################################################################################################    
                             Congrats Docker has been installed
