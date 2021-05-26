@@ -3,9 +3,9 @@
 # Goal: Script which automatically sets up a new Ubuntu Machine after installation
 # This is a basic install, easily configurable to your needs
 
-exec 3>&1 4>&2
-trap 'exec 2>&4 1>&3' 0 1 2 3
-exec 1>~/post.install.log 2>&1
+#exec 3>&1 4>&2
+#trap 'exec 2>&4 1>&3' 0 1 2 3
+#exec 1>~/post-install.log 2>&1
 
 # Test to see if user is running with root privileges.
 if [[ "${UID}" -ne 0 ]]
