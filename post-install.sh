@@ -100,6 +100,13 @@ systemctl restart sshd
 echo '$user  ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 # Install and configure Firewall
+apt-get install ufw
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow 80
+ufw allow 443
+ufw allow $sshport
+ufw enable
 
 # Fail2Ban
 
