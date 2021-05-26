@@ -134,8 +134,33 @@ sudo systemctl restart systemd-timesyncd.service
 
 # SpeedTest Install
 
-# Docker option install 
+# Option install docker and docker-compose 
+echo "
+######################################################################################################
+Do you want to install docker? If so type y / If you dont want to install enter n
+######################################################################################################
+"
+read docker
 
+if [[ $docker -eq "y" ]] || [[ $docker -eq "yes" ]]; then
+    apt install apt-transport-https ca-certificates curl software-properties-common -y
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+    apt update -y
+    apt-cache policy docker-ce
+    apt install docker-ce -y
+    apt install docker-compose -y 
+
+    echo "
+#####################################################################################################    
+                            Congrats Docker has been installed
+######################################################################################################
+"
+    docker -v
+
+else 
+    echo "Docker was not installed"
+fi
 
 # Cleanup
 sudo apt autoremove
