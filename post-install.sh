@@ -96,7 +96,7 @@ systemctl restart sshd
 echo '%sudo ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 # Install and configure Firewall
-apt-get install ufw
+apt-get install ufw -y
 ufw default deny incoming
 ufw default allow outgoing
 ufw allow 80
@@ -106,7 +106,21 @@ ufw enable
 systemctl enable ufw
 systemctl start ufw
 
-# Fail2Ban
+# Install and config Fail2Ban
+apt-get install fail2ban -y
+
+echo "
+[sshd]
+enabled = true
+port = $sshport
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 4
+bantime = 3600
+" >> /etc/fail2ban/jail.local
+
+systemctl enable fail2ban
+systemctl start fail2ban
 
 # Motd
 
