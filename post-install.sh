@@ -20,7 +20,7 @@ apt-get update -y
 apt-get upgrade -y
 
 # Install various tools
-apt-get install mc screen htop nano ssh-import-id ctop -y
+apt-get install mc screen htop nano ssh-import-id -y
 
 # Install OpenSSH
 apt-get install openssh-server -y
@@ -157,6 +157,12 @@ if [[ $docker -eq "y" ]] || [[ $docker -eq "yes" ]]; then
 ######################################################################################################
 "
     docker -v
+    
+# Install Docker-ctop
+echo "deb http://packages.azlux.fr/debian/ buster main" | sudo tee /etc/apt/sources.list.d/azlux.list
+wget -qO - https://azlux.fr/repo.gpg.key | sudo apt-key add -
+apt update
+apt install docker-ctop -y
 
 else 
     echo "Docker was not installed"
