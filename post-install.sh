@@ -99,9 +99,9 @@ echo '%sudo ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 apt-get install ufw -y
 ufw default deny incoming
 ufw default allow outgoing
-ufw allow 80
-ufw allow 443
-ufw allow $sshport
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw allow $sshport/tcp
 ufw enable
 systemctl enable ufw
 systemctl start ufw
