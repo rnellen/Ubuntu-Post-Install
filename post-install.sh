@@ -156,7 +156,7 @@ select yn in "Yes" "No"; do
               wget -qO - https://azlux.fr/repo.gpg.key | sudo apt-key add -
               apt update
               apt install docker-ctop -y; break;;
-        No ) exit;;
+        No ) break;;
     esac
 done
 
