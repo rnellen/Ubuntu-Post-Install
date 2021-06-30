@@ -134,39 +134,31 @@ sudo systemctl restart systemd-timesyncd.service
 
 # SpeedTest Install
 
-# Option install docker and docker-compose 
+# Option install docker and docker-compose
 echo "
-######################################################################################################
-Do you want to install docker? If so type y / If you dont want to install enter n
-######################################################################################################
+###############################################
+Do you want to install docker? Select yes or no
+###############################################
 "
-read docker
-
-if [[ $docker -eq "y" ]] || [[ $docker -eq "yes" ]]; then
-    apt install apt-transport-https ca-certificates curl software-properties-common -y
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-    apt update -y
-    apt-cache policy docker-ce
-    apt install docker-ce -y
-    apt install docker-compose -y 
-    usermod -a -G docker $user
-    echo "
-#####################################################################################################    
-                            Congrats Docker has been installed
-######################################################################################################
-"
-    docker -v
-    
-# Install Docker-ctop
-echo "deb http://packages.azlux.fr/debian/ buster main" | sudo tee /etc/apt/sources.list.d/azlux.list
-wget -qO - https://azlux.fr/repo.gpg.key | sudo apt-key add -
-apt update
-apt install docker-ctop -y
-
-else 
-    echo "Docker was not installed"
-fi
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) apt install apt-transport-https ca-certificates curl software-properties-common -y
+              curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+              add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+              apt update -y
+              apt-cache policy docker-ce
+              apt install docker-ce -y
+              apt install docker-compose -y 
+              usermod -a -G docker $user
+        			   docker -v
+			           # Install Docker-ctop
+              echo "deb http://packages.azlux.fr/debian/ buster main" | sudo tee /etc/apt/sources.list.d/azlux.list
+              wget -qO - https://azlux.fr/repo.gpg.key | sudo apt-key add -
+              apt update
+              apt install docker-ctop -y; break;;
+        No ) exit;;
+    esac
+done
 
 # Cleanup
 sudo apt autoremove
