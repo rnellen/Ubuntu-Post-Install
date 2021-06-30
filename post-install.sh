@@ -20,7 +20,7 @@ apt-get update -y
 apt-get upgrade -y
 
 # Install various tools
-apt-get install mc screen htop nano ssh-import-id -y
+apt-get install mc screen htop nano ssh-import-id unzip -y
 
 # Install OpenSSH
 apt-get install openssh-server -y
@@ -133,6 +133,24 @@ FallbackNTP=ntp.ubuntu.com
 sudo systemctl restart systemd-timesyncd.service
 
 # SpeedTest Install
+
+# Option install rclone
+echo "
+###############################################
+Do you want to install rclone? Select yes or no
+###############################################
+"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip
+              unzip rclone-current-linux-amd64.zip
+              cd rclone-*-linux-amd64
+              cp rclone /usr/bin/
+              chown root:root /usr/bin/rclone
+              chmod 755 /usr/bin/rclone; break;;
+        No ) break;;
+    esac
+done
 
 # Option install docker and docker-compose
 echo "
