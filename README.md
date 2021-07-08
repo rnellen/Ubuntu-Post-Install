@@ -1,12 +1,12 @@
 # Ubuntu-Bionic-Post-Install
-Scripts to Automate Ubuntu 18.04 Post Install
+Script to Automate Ubuntu 18.04 Post Install
 
 # Why 
 - Save time by not having to type out all the commands to set up your machine post install.
 
-- Simplicity, wget the script and let it run.
+- Simplicity - wget the script and let it run.
 
-# Whats on each script?
+# Whats on the script?
 Ubuntu 18.04 post install script
 
 - Change root password
