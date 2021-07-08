@@ -13,17 +13,8 @@ fi
 # change root password
 passwd
 
-# Ensure system is up to date
-apt-get update -y 
-
-# Upgrade the system
-apt-get upgrade -y
-
-# Install various tools
-apt-get install mc screen htop nano ssh-import-id unzip -y
-
 # Install OpenSSH
-apt-get install openssh-server -y
+apt-get update && apt-get install openssh-server -y
 
 # Backup SSH config files
 mv /etc/ssh/ssh_config /etc/ssh/ssh_config-orig
@@ -87,6 +78,7 @@ groupadd ssh-user
 usermod -a -G ssh-user $user
 
 # Import public key from GitHub
+apt-get install ssh-import-id -y
 su - $user -c "ssh-import-id gh:rnellen"
 
 # Restart sshd
@@ -154,9 +146,9 @@ done
 
 # Option install docker and docker-compose
 echo "
-###############################################
-Do you want to install docker? Select yes or no
-###############################################
+######################################################################
+Do you want to install docker, docker-compose & ctop? Select yes or no
+######################################################################
 "
 select yn in "Yes" "No"; do
     case $yn in
@@ -177,6 +169,15 @@ select yn in "Yes" "No"; do
         No ) break;;
     esac
 done
+
+# Ensure system is up to date
+apt-get update -y 
+
+# Upgrade the system
+apt-get upgrade -y
+
+# Install various tools
+apt-get install mc screen htop nano unzip -y
 
 # Cleanup
 sudo apt autoremove
