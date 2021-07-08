@@ -2,33 +2,32 @@
 Scripts to Automate Ubuntu 18.04 Post Install
 
 # Why 
-- Save time by not having type out all the commands to set yout machine up post install.
+- Save time by not having to type out all the commands to set up your machine post install.
 
-- Simplicity / Save time after your install, wget the script raw and let it run.
-
-# Time
-- Post installs can take time, especially if you're trying to balance multiple things at once, run the script do something else, reply to that email and finish when its done.
+- Simplicity, wget the script and let it run.
 
 # Whats on each script?
 Ubuntu 18.04 post install script
 
-- System updates 
-- OpenSSH install
-- Ufw config
-- speedtest-cli
-- Fail2Ban config
-- Automatic security updates
-- SSH disable root login
-- SFTP server config
-- Optional install of Wireguard VPN server - credit to https://github.com/l-n-s/wireguard-install
-- Optional install for docker
-- A message of the day system stats
+- Change root password
+- Configure ssh (disable root login, keybased login, hardening)
+- Create new default user and add it to sudo and ssh-user
+- Import public key from GitHub
+- Sudo without password
+- Install and configure Firewall
+- Install and config Fail2Ban
+- Motd - to do
+- Config and start timesyncd
+- speedtest-cli - to do
+- Option install rclone
+- Option install docker and docker-compose
+- System updates and upgrade
 - System Clean up after the install
 
-# How tu use it
+# How to use it
 wget https://raw.githubusercontent.com/rnellen/Ubuntu-Bionic-Post-Install/main/post-install.sh && bash post-install.sh
 
-# How tu use speedtest
+# How to use speedtest
 In order to use speedtest just use "speedtest" as the command in the cli.[ Click for more info.](https://github.com/sivel/speedtest-cli)
 
 # Credits
