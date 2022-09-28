@@ -1,5 +1,5 @@
-# Ubuntu-Bionic-Post-Install
-Script to Automate Ubuntu 18.04 Post Install
+# Ubuntu-Post-Install
+Script to Automate Ubuntu 18.04 or 22.04 Post Install
 
 # Why 
 - Save time by not having to type out all the commands to set up your machine post install.
@@ -7,7 +7,7 @@ Script to Automate Ubuntu 18.04 Post Install
 - Simplicity - wget the script and let it run.
 
 # Whats on the script?
-Ubuntu 18.04 post install script
+Ubuntu post install script
 
 - Change root password
 - Configure ssh (disable root login, keybased login, hardening)
@@ -25,7 +25,11 @@ Ubuntu 18.04 post install script
 - System Clean up after the install
 
 # How to use it
-wget https://raw.githubusercontent.com/rnellen/Ubuntu-Bionic-Post-Install/main/post-install.sh && bash post-install.sh
+Ubuntu 18.04
+wget https://raw.githubusercontent.com/rnellen/Ubuntu-Post-Install/main/bionic-post-install.sh && bash post-install.sh
+
+Ubuntu 22.04
+wget https://raw.githubusercontent.com/rnellen/Ubuntu-Post-Install/main/jammy-post-install.sh && bash post-install.sh
 
 # How to use speedtest
 In order to use speedtest just use "speedtest" as the command in the cli.[ Click for more info.](https://github.com/sivel/speedtest-cli)
