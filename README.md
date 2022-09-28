@@ -26,10 +26,10 @@ Ubuntu post install script
 
 # How to use it
 Ubuntu 18.04
-wget https://raw.githubusercontent.com/rnellen/Ubuntu-Post-Install/main/bionic-post-install.sh && bash post-install.sh
+wget https://raw.githubusercontent.com/rnellen/Ubuntu-Post-Install/main/bionic-post-install.sh && bash bionic-post-install.sh
 
 Ubuntu 22.04
-wget https://raw.githubusercontent.com/rnellen/Ubuntu-Post-Install/main/jammy-post-install.sh && bash post-install.sh
+wget https://raw.githubusercontent.com/rnellen/Ubuntu-Post-Install/main/jammy-post-install.sh && bash jammy-post-install.sh
 
 # How to use speedtest
 In order to use speedtest just use "speedtest" as the command in the cli.[ Click for more info.](https://github.com/sivel/speedtest-cli)
