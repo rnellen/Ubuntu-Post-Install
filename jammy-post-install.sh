@@ -167,9 +167,11 @@ select yn in "Yes" "No"; do
               apt install docker-ce -y
               apt install docker-compose -y 
               usermod -a -G docker $user
-        			docker -v
-			        # Install ctop
-              apt install ctop -y; break;;
+              docker -v
+	      # Install ctop
+	      curl -s https://api.github.com/repos/bcicen/ctop/releases/latest | grep browser_download_url|grep linux-amd64 | cut -d '"' -f 4 | wget -i -
+              chmod +x ctop-*-linux-amd64
+              sudo mv ctop-*-linux-amd64 /usr/local/bin/ctop; break;;
         No ) break;;
     esac
 done
